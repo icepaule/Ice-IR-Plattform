@@ -17,7 +17,7 @@ flowchart TB
         SynapseProd["Matrix Synapse (Homeserver)\nFederation deaktiviert"]
         ElementProd["Element Web/Desktop"]
         MISPprod["MISP\nIOC-Austausch, TLP-Tagging"]
-        S3["S3/MinIO + KMS\nForensik-Dateien, verschlüsselt"]
+        S3["S3 + KMS\nForensik-Dateien, verschlüsselt"]
         Backup["Verschlüsseltes Offsite-Backup\nseparater Account/Provider"]
 
         VPCIso --> AuthProd
@@ -35,7 +35,7 @@ flowchart TB
 - **Identity-Provider davor statt Matrix-eigener Auth**: Synapse unterstützt OIDC-Provider nativ (`oidc_providers` in `homeserver.yaml`), moderner über das Matrix Authentication Service (MAS) Projekt. Damit läuft 2FA/FIDO2-Erzwingung zentral im IdP — Chat-Layer und Auth-Layer bleiben sauber getrennt.
 - **Eigene, separate IdP-Instanz für die IR-Plattform**: NIST SP 800-63B schließt E-Mail als Out-of-Band-Auth-Kanal aus; dieselbe Logik gilt für den IdP selbst — die IR-Plattform sollte nicht denselben Identity-Provider-Client/Flow wie die alltägliche Infrastruktur nutzen, damit ein Incident dort den IR-Zugang nicht mit invalidiert.
 - **MISP für IOC/strukturierten Datenaustausch statt Chat-Anhänge**: strukturierte Daten (Logs, IOCs) gehören nicht als Datei in den Chat, sondern in eine IOC-Plattform mit TLP-Tag und STIX-Export — sauberer Audit-Trail, automatische Korrelation.
-- **S3/MinIO mit KMS statt Chat-eigenem Storage** für große Forensik-Artefakte: kurzlebige Zugriffs-Credentials, Encryption-at-Rest mit Customer-Managed Keys, TLS-Erzwingung (siehe AWS-Framework in [01-analyse-und-quellen.md](01-analyse-und-quellen.md)).
+- **S3 mit KMS statt Chat-eigenem Storage** für große Forensik-Artefakte: kurzlebige Zugriffs-Credentials, Encryption-at-Rest mit Customer-Managed Keys, TLS-Erzwingung (siehe AWS-Framework in [01-analyse-und-quellen.md](01-analyse-und-quellen.md)). Bei bereits vorhandenem AWS-Account: natives S3 nutzen statt selbst gehosteten Object-Storage zu betreiben — spart Betriebsaufwand. **MinIO explizit nicht mehr empfohlen** (siehe [05-lizenzen-und-limits.md](05-lizenzen-und-limits.md)): Projekt seit Dezember 2025 in "Maintenance Mode", Community Edition verlor bereits im Mai 2025 die Admin-Konsole zugunsten des Enterprise-Tarifs. Bei Bedarf für providerunabhängigen Self-Hosted-Object-Storage stattdessen Ceph oder SeaweedFS prüfen (nicht Teil dieser Recherche).
 - **Kein CryptPad, kein ArmorText als Kernkomponente**: beide hatten unbelegte bzw. widerlegte Sicherheitsaussagen bei der Verifikation (siehe Abschnitt 2 in [01-analyse-und-quellen.md](01-analyse-und-quellen.md)). CryptPad kann optional ergänzend für unkritische Notizen genutzt werden, aber nicht als tragende Sicherheitsschicht ohne eigene unabhängige Prüfung.
 
 ## TLP-Integration

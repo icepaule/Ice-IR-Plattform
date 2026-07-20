@@ -9,8 +9,9 @@ Kann eine sichere 2FA-Plattform für Chat-, Nachrichten- und Datenaustausch wäh
 ## TL;DR
 
 - Eine **einzelne EC2-Instanz reicht nicht** für Out-of-Band-IR-Betrieb. AWS selbst empfiehlt für Forensik/IR-Arbeit einen **komplett separaten, isolierten Account + eigene VPC** — siehe [02-architektur.md](docs/02-architektur.md).
-- Empfohlener Software-Stack: **Matrix/Synapse + Element** (E2EE, verifizierbares Cross-Signing) hinter **Authentik als OIDC-Identity-Provider** (SSO + 2FA/FIDO2), **MISP** für strukturierten IOC-Austausch mit TLP-2.0-Tagging, **S3/MinIO + KMS** für verschlüsselte Forensik-Dateien.
-- Für den Dauerbetrieb ist eine Alternative zu AWS (z.B. ein separates Hetzner-Cloud-Projekt in der EU) meist deutlich günstiger bei gleicher DSGVO-Konformität — AWS lohnt nur bei explizitem Zwang dazu.
+- Empfohlener Software-Stack: **Matrix/Synapse + Element** (E2EE, verifizierbares Cross-Signing) hinter **Authentik als OIDC-Identity-Provider** (SSO + 2FA/FIDO2), **MISP** für strukturierten IOC-Austausch mit TLP-2.0-Tagging, **AWS S3 + KMS** für verschlüsselte Forensik-Dateien.
+- Alle empfohlenen Kernkomponenten sind Open Source ohne Lizenzkosten und decken 10-50 Nutzer komfortabel im kostenlosen Rahmen ab (Details inkl. Nutzungslimits: [05-lizenzen-und-limits.md](docs/05-lizenzen-und-limits.md)). **MinIO wird nicht mehr empfohlen** — das Projekt ist seit Dezember 2025 in Maintenance Mode.
+- Für den Dauerbetrieb ist eine Alternative zu AWS (z.B. ein separates Hetzner-Cloud-Projekt in der EU) meist deutlich günstiger bei gleicher DSGVO-Konformität — AWS lohnt sich vor allem, wenn bereits ein dedizierter Out-of-Band-Account existiert.
 - Ein Proof-of-Concept lässt sich mit überschaubarem Aufwand auf vorhandener Proxmox-Infrastruktur hinter einer bestehenden Authentik-Instanz aufbauen, siehe [03-poc-anleitung.md](docs/03-poc-anleitung.md).
 
 ## Inhalt
@@ -21,6 +22,7 @@ Kann eine sichere 2FA-Plattform für Chat-, Nachrichten- und Datenaustausch wäh
 | [docs/02-architektur.md](docs/02-architektur.md) | Architektur-Empfehlung, Mermaid-Diagramme, AWS vs. Alternativen, Kosten |
 | [docs/03-poc-anleitung.md](docs/03-poc-anleitung.md) | Schritt-für-Schritt-Anleitung für einen Proof-of-Concept |
 | [docs/04-schlussfolgerungen.md](docs/04-schlussfolgerungen.md) | Schlussfolgerungen, Risiken/Fallstricke, offene Punkte für Nachrecherche |
+| [docs/05-lizenzen-und-limits.md](docs/05-lizenzen-und-limits.md) | Lizenzkosten und Nutzungslimits je Komponente, inkl. MinIO-Statusänderung Dez. 2025 |
 
 ## Methodik
 
