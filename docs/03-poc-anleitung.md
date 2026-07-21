@@ -65,3 +65,5 @@ Für den Test des IOC-Austausch-Workflows eine zweite kleine VM/Container mit MI
 ## Nächster Schritt nach erfolgreichem POC
 
 Migration der validierten Konfiguration auf eine vollständig isolierte Produktivumgebung (separates Konto/Projekt bei einem Cloud-Anbieter, eigene Netz-Isolation, eigene Backup-Strategie) — siehe Architektur-Empfehlung in [02-architektur.md](02-architektur.md).
+
+**Update:** Der hier beschriebene POC wurde inzwischen auf Matrix Authentication Service (MAS) migriert (Voraussetzung für QR-Code-Login) und läuft SSO-only extern erreichbar — siehe [06-mas-migration-und-qr-login.md](06-mas-migration-und-qr-login.md).
