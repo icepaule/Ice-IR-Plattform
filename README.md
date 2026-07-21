@@ -14,6 +14,7 @@ Kann eine sichere 2FA-Plattform für Chat-, Nachrichten- und Datenaustausch wäh
 - Für den Dauerbetrieb ist eine Alternative zu AWS (z.B. ein separates Hetzner-Cloud-Projekt in der EU) meist deutlich günstiger bei gleicher DSGVO-Konformität — AWS lohnt sich vor allem, wenn bereits ein dedizierter Out-of-Band-Account existiert.
 - Ein Proof-of-Concept lässt sich mit überschaubarem Aufwand auf vorhandener Proxmox-Infrastruktur hinter einer bestehenden Authentik-Instanz aufbauen, siehe [03-poc-anleitung.md](docs/03-poc-anleitung.md).
 - **Update:** Der POC läuft produktiv, SSO-only (kein Passwort-Fallback mehr), extern erreichbar über eine eigene Subdomain mit Let's-Encrypt-TLS. Migration auf Matrix Authentication Service (MAS) abgeschlossen, inkl. QR-Code-Geräteverknüpfung — siehe [06-mas-migration-und-qr-login.md](docs/06-mas-migration-und-qr-login.md).
+- **Update:** Security-Audit durchgeführt (Versionsabgleich + Live-Konfigurationsprüfung), mehrere Findings identifiziert und gehärtet — siehe [07-security-audit-und-haertung.md](docs/07-security-audit-und-haertung.md).
 
 ## Inhalt
 
@@ -25,6 +26,7 @@ Kann eine sichere 2FA-Plattform für Chat-, Nachrichten- und Datenaustausch wäh
 | [docs/04-schlussfolgerungen.md](docs/04-schlussfolgerungen.md) | Schlussfolgerungen, Risiken/Fallstricke, offene Punkte für Nachrecherche |
 | [docs/05-lizenzen-und-limits.md](docs/05-lizenzen-und-limits.md) | Lizenzkosten und Nutzungslimits je Komponente, inkl. MinIO-Statusänderung Dez. 2025 |
 | [docs/06-mas-migration-und-qr-login.md](docs/06-mas-migration-und-qr-login.md) | Update: Migration auf Matrix Authentication Service (MAS), QR-Code-Login, SSO-only-Umstellung |
+| [docs/07-security-audit-und-haertung.md](docs/07-security-audit-und-haertung.md) | Security-Audit: Versionsabgleich, Konfigurations-Findings, Härtungsmaßnahmen, Lessons Learned |
 
 ## Methodik
 
